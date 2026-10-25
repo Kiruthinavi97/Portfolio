@@ -185,7 +185,13 @@ nav a:hover{color:var(--teal)}
 .log-body li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:1.5px;background:var(--teal)}
 
 /* ============ PROJECTS ============ */
-.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;max-width:600px}
+/* 3 cards per row on desktop (was capped at max-width:600px → wrapped to 2 columns) */
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:20px;
+  align-items:stretch;
+}
 .project-card{
   background:var(--card);border:1px solid var(--border);border-radius:var(--r-l);
   padding:28px;display:flex;flex-direction:column;
@@ -203,7 +209,7 @@ nav a:hover{color:var(--teal)}
 .tag-row span{font-size:11px;padding:4px 10px;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--muted)}
 .project-link{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--teal);transition:gap var(--ease)}
 .project-link:hover{gap:12px}
-.project-link-row{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+.project-link-row{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:auto}
 .project-link.live{color:var(--text)}
 .project-link.live:hover{color:var(--teal)}
 
@@ -292,6 +298,14 @@ footer{border-top:1px solid var(--border);padding:28px 0;text-align:center}
 footer p{font-size:13px;color:var(--dim)}
 
 /* ============ RESPONSIVE ============ */
+/* Projects: 3 → 2 → 1 columns */
+@media (max-width:1000px){
+  .project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .project-grid{grid-template-columns:1fr}
+}
+
 @media (max-width:860px){
   .hero-inner{grid-template-columns:1fr}
   .id-card{position:static;max-width:260px;margin:0 auto}
